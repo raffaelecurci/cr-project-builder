@@ -1,27 +1,44 @@
 package cr.listeners;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-//import cr.generated.interf.Listener;
+import cr.generated.interf.Listener;
+import cr.generated.ops.MessageListener;
 import cr.interf.EncryptedMessage;
+import cr.service.BuilderOperator;
 
 @Configuration
 public class ApplicationListener {
-//	@Bean
-//	public Listener messageListener() {
-//		return new Listener() {
+	@Autowired
+	private BuilderOperator buo;
+	
+	@Bean
+	public Listener listener() {
+		return new Listener() {
+			@Override
+			public void processBui(EncryptedMessage message) {
+				// TODO Auto-generated method stub
+				buo.action(message);
+			}
 //			@Override
-//			public void processApp2(EncryptedMessage message) {
+//			public boolean isProcessing() {
 //				// TODO Auto-generated method stub
-//				System.out.println(message.toString());
+//				return processing;
 //			}
 //			@Override
-//			public void processApp1(EncryptedMessage message) {
+//			public void setProcessing(boolean processing) {
 //				// TODO Auto-generated method stub
-//				System.out.println(message.toString());
+//				this.processing=processing;
 //			}
-//		};
-//	}
+			
+		};
+	}
+	
+	@Bean
+	public MessageListener messageListener() {
+		return new MessageListener() ;
+	}
 }
 

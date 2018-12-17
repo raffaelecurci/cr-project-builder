@@ -28,8 +28,8 @@ public class JenkinsController {
 	private static final Logger log = LoggerFactory.getLogger(JenkinsController.class);
 	private static String encryption=ProjectBuilderApplication.class.getAnnotation(cr.annotation.QueueDefinition.class).encryption();
 	
-	@Autowired
-	private RPCClient client;
+//	@Autowired
+//	private RPCClient client;
 	@Autowired
 	private MessageSender msgSender;
 	@Autowired
@@ -48,7 +48,7 @@ public class JenkinsController {
 		    ObjectMapper mapper = new ObjectMapper();
 		    prebuild = mapper.readValue(requestBody, JenkinsBuildInfo.class);
 		    EncryptedMessage enc=prebuild.toEncryptedMessage(encryption).encodeBase64();
-		    client.sendAndReceiveDb(enc);
+//		    client.sendAndReceiveDb(enc);
 		    if(prebuild.getVeracodeScan()!=null)
 		    	msgSender.sendMessage(rabbitTemplate, applicationConfigReader.getResExchange(), applicationConfigReader.getResRoutingKey(), enc);
 		} catch (IOException e) {

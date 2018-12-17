@@ -1,25 +1,27 @@
 package cr.listeners;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-//import cr.generated.interf.ProcessRPCResponse;
+
+
+import cr.generated.interf.ProcessRPCResponse;
+import cr.interf.EncryptedMessage;
+import cr.service.BuilderOperator;
+
 
 @Configuration
 public class ApplicationRPCServer {
-//	@Bean
-//	public ProcessRPCResponse ProcessResponse() {
-//		return new ProcessRPCResponse() {
-//			@Override
-//			public byte[] processApp1ResponseRPC(byte[] body) {
-//				// TODO Auto-generated method stub
-//				return body;
-//			}
-//			@Override
-//			public byte[] processApp2ResponseRPC(byte[] body) {
-//				// TODO Auto-generated method stub
-//				return body;
-//			}			
-//		};
-//	}
+	@Autowired
+	private BuilderOperator bo;
+	@Bean
+	public ProcessRPCResponse ProcessResponse() {
+		return new ProcessRPCResponse() {
+			@Override
+			public EncryptedMessage processBuiResponseRPC(EncryptedMessage message) {
+				return bo.action(message);
+			}
+		};
+	}
 }

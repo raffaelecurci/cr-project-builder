@@ -38,11 +38,11 @@ import cr.util.RepoHandler;
 @RefreshScope
 @EnableAsync
 @Service
-public class BuilderManager {
+public class _BuilderManager {
 	@Autowired
 	private RPCClient client;
 	private static String encryption=ProjectBuilderApplication.class.getAnnotation(cr.annotation.QueueDefinition.class).encryption();
-	private static Logger log = LoggerFactory.getLogger(BuilderManager.class);
+	private static Logger log = LoggerFactory.getLogger(_BuilderManager.class);
 	
 	@Value("${projects.storage}")
 	private String storagePath;
@@ -54,7 +54,7 @@ public class BuilderManager {
 	
 	@Async
 	public void checkBuildVerifyScan() {
-		check();
+//		check();
 	}
 	
 	private void check() {

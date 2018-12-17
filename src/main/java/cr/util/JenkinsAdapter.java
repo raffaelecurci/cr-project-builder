@@ -20,7 +20,7 @@ public class JenkinsAdapter {
 		this.token = token;
 		this.url = url;
 	}
-
+	
 	public String buildJob(String JobName) {
 		HttpURLConnection connection = prepairHttpRequest("job/"+JobName+"/build","POST");
 		try {

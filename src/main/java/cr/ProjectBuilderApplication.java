@@ -10,7 +10,8 @@ import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
 
 import cr.annotation.QueueDefinition;
 
-@QueueDefinition(rpcClient={"db"},encryption="PlainText",queues= {"res"},excludeListeners= {"res"})
+//@QueueDefinition(rpcClient={"db"},encryption="PlainText",queues= {"res"},excludeListeners= {"res"})
+@QueueDefinition(rpcServer= {"bui"},rpcClient={"db","ana"},encryption="PlainText",queues= {"res","bui","bre"}, excludeListeners= {"bre","res"})
 @RefreshScope
 @SpringBootApplication
 @EnableRabbit
